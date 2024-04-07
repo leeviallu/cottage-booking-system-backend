@@ -1,8 +1,6 @@
 package org.example.cottagebookingsystembackend.controller;
 
-import org.example.cottagebookingsystembackend.model.Area;
 import org.example.cottagebookingsystembackend.model.Cottage;
-import org.example.cottagebookingsystembackend.service.AreaService;
 import org.example.cottagebookingsystembackend.service.CottageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -32,39 +30,35 @@ public class CottageController {
 
     @PostMapping
     public ResponseEntity<String> createCottage(@RequestBody Cottage cottage) {
-        /*
-        if (area.getName() == null || area.getName().isEmpty()) {
+        if (cottage.getAreaId() == null || cottage.getPostalCode() == null) {
             return ResponseEntity.unprocessableEntity().build();
         }
-         */
         cottageService.createCottage(cottage);
         return ResponseEntity.ok("Cottage has been created");
     }
-    /*
-
-
-
 
     @PutMapping("/{id}")
-    public ResponseEntity<String> updateArea(@PathVariable Long id, @RequestBody Area area) {
-        Area existingArea = areaService.getAreaById(id);
-        if (existingArea != null) {
-            area.setAreaId(id);
-            areaService.updateArea(area);
-            return ResponseEntity.ok("Area updated successfully");
+    public ResponseEntity<String> updateCottage(@PathVariable Long id, @RequestBody Cottage cottage) {
+        Cottage existingCottage = cottageService.getCottageById(id);
+        if (existingCottage != null) {
+            cottage.setCottageId(id);
+            if (cottage.getCottageId() == null || cottage.getAreaId() == null || cottage.getPostalCode() == null) {
+                return ResponseEntity.unprocessableEntity().build();
+            }
+            cottageService.updateCottage(cottage);
+            return ResponseEntity.ok("Cottage updated successfully");
         }
         return ResponseEntity.notFound().build();
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteArea(@PathVariable Long id) {
-        Area existingArea = areaService.getAreaById(id);
-        if (existingArea != null) {
-            areaService.deleteArea(id);
+    public ResponseEntity<String> deleteCottage(@PathVariable Long id) {
+        Cottage existingCottage = cottageService.getCottageById(id);
+        if (existingCottage != null) {
+            cottageService.deleteCottage(id);
         } else {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.noContent().build();
     }
-     */
 }

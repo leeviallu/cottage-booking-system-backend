@@ -19,75 +19,75 @@ public class Cottage {
 
     public Cottage() {}
 
-    public Long getMokkiId() {
+    public Long getCottageId() {
         return mokkiId;
     }
 
-    public void setMokkiId(Long mokkiId) {
+    public void setCottageId(Long mokkiId) {
         this.mokkiId = mokkiId;
     }
 
-    public Long getAlueId() {
+    public Long getAreaId() {
         return alueId;
     }
 
-    public void setAlueId(Long alueId) {
+    public void setAreaId(Long alueId) {
         this.alueId = alueId;
     }
 
-    public String getPostinro() {
+    public String getPostalCode() {
         return postinro;
     }
 
-    public void setPostinro(String postinro) {
+    public void setPostalCode(String postinro) {
         this.postinro = postinro;
     }
 
-    public String getMokkinimi() {
+    public String getCottageName() {
         return mokkinimi;
     }
 
-    public void setMokkinimi(String mokkinimi) {
+    public void setCottageName(String mokkinimi) {
         this.mokkinimi = mokkinimi;
     }
 
-    public String getKatuosoite() {
+    public String getAddress() {
         return katuosoite;
     }
 
-    public void setKatuosoite(String katuosoite) {
+    public void setAddress(String katuosoite) {
         this.katuosoite = katuosoite;
     }
 
-    public double getHinta() {
+    public double getPrice() {
         return hinta;
     }
 
-    public void setHinta(double hinta) {
+    public void setPrice(double hinta) {
         this.hinta = hinta;
     }
 
-    public String getKuvaus() {
+    public String getDescription() {
         return kuvaus;
     }
 
-    public void setKuvaus(String kuvaus) {
+    public void setDescription(String kuvaus) {
         this.kuvaus = kuvaus;
     }
 
-    public int getHenkilomaara() {
+    public int getPersonCapacity() {
         return henkilomaara;
     }
 
-    public void setHenkilomaara(int henkilomaara) {
+    public void setPersonCapacity(int henkilomaara) {
         this.henkilomaara = henkilomaara;
     }
 
-    public String getVarustelu() {
+    public String getEquipment() {
         return varustelu;
     }
 
-    public void setVarustelu(String varustelu) {
+    public void setEquipment(String varustelu) {
         this.varustelu = varustelu;
     }
 }
