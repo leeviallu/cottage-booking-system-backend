@@ -6,15 +6,16 @@ import jakarta.persistence.*;
 @Table(name = "alue")
 public class Area {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long alueId;
     private String nimi;
+
+    public Area() {}
 
     public Area(Long alueId, String nimi) {
         this.alueId = alueId;
         this.nimi = nimi;
     }
-
-    public Area() {}
 
     public void setAreaId(Long alueId) {
         this.alueId = alueId;
