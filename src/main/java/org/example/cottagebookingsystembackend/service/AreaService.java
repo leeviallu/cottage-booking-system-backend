@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface AreaService {
     Area getAreaById(Long id);
-    void createArea(Area product);
-    void updateArea(Area product);
+    void createArea(Area area);
+    void updateArea(Area area);
     void deleteArea(Long id);
     List<Area> getAllAreas();
 }
