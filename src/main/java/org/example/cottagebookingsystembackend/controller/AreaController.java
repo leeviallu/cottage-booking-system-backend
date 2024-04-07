@@ -3,6 +3,7 @@ package org.example.cottagebookingsystembackend.controller;
 import org.example.cottagebookingsystembackend.model.Area;
 import org.example.cottagebookingsystembackend.service.AreaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,21 +30,33 @@ public class AreaController {
     }
 
     @PostMapping
-    public void createArea(@RequestBody Area area) {
+    public ResponseEntity<String> createArea(@RequestBody Area area) {
+        if (area.getName() == null || area.getName().isEmpty()) {
+            return ResponseEntity.unprocessableEntity().build();
+        }
         areaService.createArea(area);
+        return ResponseEntity.ok("Area has been created");
     }
 
     @PutMapping("/{id}")
-    public void updateArea(@PathVariable Long id, @RequestBody Area area) {
+    public ResponseEntity<String> updateArea(@PathVariable Long id, @RequestBody Area area) {
         Area existingArea = areaService.getAreaById(id);
         if (existingArea != null) {
-            area.setAreaId(id); // Ensure the correct ID is set
+            area.setAreaId(id);
             areaService.updateArea(area);
+            return ResponseEntity.ok("Area updated successfully");
         }
+        return ResponseEntity.notFound().build();
     }
 
     @DeleteMapping("/{id}")
-    public void deleteArea(@PathVariable Long id) {
-        areaService.deleteArea(id);
+    public ResponseEntity<String> deleteArea(@PathVariable Long id) {
+        Area existingArea = areaService.getAreaById(id);
+        if (existingArea != null) {
+            areaService.deleteArea(id);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.noContent().build();
     }
 }
