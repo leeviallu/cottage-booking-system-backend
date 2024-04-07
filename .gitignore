@@ -33,4 +33,4 @@ build/
 .vscode/
 
 ### Personal files ###
-src/main/java/org.example.cottagebookingsystembackend/EnvironmentVariable.java
+src/main/resources/application.properties
