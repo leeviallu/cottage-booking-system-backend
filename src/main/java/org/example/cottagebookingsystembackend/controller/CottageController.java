@@ -24,7 +24,7 @@ public class CottageController {
     }
 
     @GetMapping
-    public List<Cottage> getAllAreas() {
+    public List<Cottage> getAllCottages() {
         return cottageService.getAllCottages();
     }
 
