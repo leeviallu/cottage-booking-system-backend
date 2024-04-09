@@ -40,7 +40,7 @@ public class ServiceServiceImpl implements ServiceService {
     }
 
     public List<ServiceModel> getAllServices() {
-        return serviceRepository.findAll();
+        return (List<ServiceModel>) serviceRepository.findAll();
     }
 
 }

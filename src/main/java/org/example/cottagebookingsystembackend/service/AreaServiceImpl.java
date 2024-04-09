@@ -39,6 +39,6 @@ public class AreaServiceImpl implements AreaService {
     }
 
     public List<Area> getAllAreas() {
-        return areaRepository.findAll();
+        return (List<Area>) areaRepository.findAll();
     }
 }

@@ -1,8 +1,6 @@
 package org.example.cottagebookingsystembackend.service;
 
-import org.example.cottagebookingsystembackend.model.Area;
 import org.example.cottagebookingsystembackend.model.Cottage;
-import org.example.cottagebookingsystembackend.repository.AreaRepository;
 import org.example.cottagebookingsystembackend.repository.CottageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,6 +39,6 @@ public class CottageServiceImpl implements CottageService {
     }
 
     public List<Cottage> getAllCottages() {
-        return cottageRepository.findAll();
+        return (List<Cottage>) cottageRepository.findAll();
     }
 }

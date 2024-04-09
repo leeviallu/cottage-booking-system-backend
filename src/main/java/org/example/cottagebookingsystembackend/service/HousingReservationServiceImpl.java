@@ -41,6 +41,6 @@ public class HousingReservationServiceImpl implements HousingReservationService{
     }
 
     public List<HousingReservation> getAllHousingReservations() {
-        return housingReservationRepository.findAll();
+        return (List<HousingReservation>) housingReservationRepository.findAll();
     }
 }

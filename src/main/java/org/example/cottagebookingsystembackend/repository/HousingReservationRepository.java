@@ -1,6 +1,6 @@
 package org.example.cottagebookingsystembackend.repository;
 
 import org.example.cottagebookingsystembackend.model.HousingReservation;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 
-public interface HousingReservationRepository extends JpaRepository<HousingReservation, Long> { }
+public interface HousingReservationRepository extends CrudRepository<HousingReservation, Long> { }
