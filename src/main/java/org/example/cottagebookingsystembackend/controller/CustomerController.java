@@ -12,7 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/customers")
 public class CustomerController {
-    private final CustomerController customerService;
+    private final CustomerService customerService;
 
     @Autowired
     public CustomerController(CustomerService customerService) {
@@ -39,33 +39,30 @@ public class CustomerController {
         return ResponseEntity.ok("Customer has been created");
     }
 
-    /*
+
     @PutMapping("/{id}")
-    public ResponseEntity<String> updateCottage(@PathVariable Long id, @RequestBody Cottage cottage) {
-        Cottage existingCottage = cottageService.getCottageById(id);
-        if (existingCottage != null) {
-            cottage.setCottageId(id);
-            if (cottage.getCottageId() == null || cottage.getAreaId() == null || cottage.getPostalCode() == null) {
+    public ResponseEntity<String> updateCustomer(@PathVariable Long id, @RequestBody Customer customer) {
+        Customer existingCustomer = customerService.getCustomerById(id);
+        if (existingCustomer != null) {
+            customer.setCustomerId(id);
+            if (customer.getCustomerId() == null || customer.getPostalCode() == null) {
                 return ResponseEntity.unprocessableEntity().build();
             }
-            cottageService.updateCottage(cottage);
-            return ResponseEntity.ok("Cottage updated successfully");
+            customerService.updateCustomer(customer);
+            return ResponseEntity.ok("Customer updated successfully");
         }
         return ResponseEntity.notFound().build();
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteCottage(@PathVariable Long id) {
-        Cottage existingCottage = cottageService.getCottageById(id);
-        if (existingCottage != null) {
-            cottageService.deleteCottage(id);
+    public ResponseEntity<String> deleteCustomer(@PathVariable Long id) {
+        Customer existingCustomer = customerService.getCustomerById(id);
+        if (existingCustomer != null) {
+            customerService.deleteCustomer(id);
         } else {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.noContent().build();
     }
-
-*/
-
 }
 

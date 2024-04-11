@@ -7,8 +7,7 @@ import jakarta.persistence.*;
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
-    private int asiakasId;
+    private Long asiakasId;
     private String postinro;
     private String etunimi;
     private String sukunimi;
@@ -21,19 +20,19 @@ public class Customer {
 
     public Customer() {}
 
-    public int getCustomerId() {
+    public Long getCustomerId() {
         return asiakasId;
     }
 
-    public void setCustomerId(int asiakasId) {
+    public void setCustomerId(long asiakasId) {
         this.asiakasId = asiakasId;
     }
 
-    public String getName() {
+    public String getFirstName() {
         return etunimi;
     }
 
-    public void setName(String etunimi) {
+    public void setFirstName(String etunimi) {
         this.etunimi = etunimi;
     }
 
@@ -49,15 +48,15 @@ public class Customer {
         return sukunimi;
     }
 
-    public void setSukunimi(String sukunimi) {
+    public void setLastName(String sukunimi) {
         this.sukunimi = sukunimi;
     }
 
-    public String getLahiosoite() {
+    public String getAddress() {
         return lahiosoite;
     }
 
-    public void setLahiosoite(String lahiosoite) {
+    public void setAddress(String lahiosoite) {
         this.lahiosoite = lahiosoite;
     }
 
@@ -69,11 +68,11 @@ public class Customer {
         this.email = email;
     }
 
-    public String getPuhelinnro() {
+    public String getPhoneNumber() {
         return puhelinnro;
     }
 
-    public void setPuhelinnro(String puhelinnro) {
+    public void setPhoneNumber(String puhelinnro) {
         this.puhelinnro = puhelinnro;
     }
 }
