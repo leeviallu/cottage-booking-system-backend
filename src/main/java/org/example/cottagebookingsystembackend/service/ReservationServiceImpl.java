@@ -2,6 +2,7 @@ package org.example.cottagebookingsystembackend.service;
 
 
 import org.example.cottagebookingsystembackend.model.Reservation;
+import org.example.cottagebookingsystembackend.model.ServicesOfReservation;
 import org.example.cottagebookingsystembackend.repository.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,7 +48,7 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    public List<Reservation> getAllReservationsByDate(Date startDate, Date endDate) {
-        return reservationRepository.findAllReservationsByVarattuAlkupvmAfterAndVarattuLoppupvmBefore(startDate, endDate);
+    public List<ServicesOfReservation> getAllReservationsByDate(Date startDate, Date endDate) {
+        return reservationRepository.findAllReservationsByDate(startDate, endDate);
     }
 }

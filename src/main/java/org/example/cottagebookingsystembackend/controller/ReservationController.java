@@ -2,6 +2,7 @@ package org.example.cottagebookingsystembackend.controller;
 
 
 import org.example.cottagebookingsystembackend.model.Reservation;
+import org.example.cottagebookingsystembackend.model.ServicesOfReservation;
 import org.example.cottagebookingsystembackend.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -33,15 +34,13 @@ public class ReservationController {
     }
 
     @GetMapping("/date")
-    public ResponseEntity<List<Reservation>> getReservationsByDate(@RequestParam String startDate, @RequestParam String endDate) {
+    public ResponseEntity<List<ServicesOfReservation>> getReservationsByDate(@RequestParam String startDate, @RequestParam String endDate) {
         SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
 
         try {
             Date startFormatted = inputFormat.parse(startDate);
             Date endFormatted = inputFormat.parse(endDate);
-            List<Reservation> reservationsByDates = reservationService.getAllReservationsByDate(startFormatted, endFormatted);
-            // TODO filter services with reservation id
-            return ResponseEntity.ok().body(reservationsByDates);
+            return ResponseEntity.ok().body(reservationService.getAllReservationsByDate(startFormatted, endFormatted));
         } catch (ParseException e) {
             e.printStackTrace();
         }
