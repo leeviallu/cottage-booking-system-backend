@@ -5,72 +5,84 @@ import jakarta.persistence.*;
 @Table(name = "palvelu")
 public class ServiceModel {
     @Id
-    private Long palvelu_Id;
-    private Long alueId;
-    private String nimi;
-    private int tyyppi;
-    private String kuvaus;
-    private double hinta;
-    private double alv;
+    @Column(name = "palvelu_id")
+    private Long serviceId;
 
-    public ServiceModel(){}
+    @Column(name = "nimi")
+    private String name;
+
+    @Column(name = "tyyppi")
+    private Integer type;
+
+    @Column(name = "kuvaus")
+    private String description;
+
+    @Column(name = "hinta")
+    private Double price;
+
+    @Column(name = "alv")
+    private Double vat;
+
+    @ManyToOne
+    @JoinColumn(name = "alue_id")
+    private Area areaId;
+
+    public ServiceModel() {
+    }
 
     public Long getServiceId() {
-        return palvelu_Id;
+        return serviceId;
     }
 
-    public void setServiceId(Long palvelu_Id) {
-        this.palvelu_Id = palvelu_Id;
-    }
-
-    public Long getAreaId() {
-        return alueId;
-    }
-
-    public void setAreaId(Long alueId) {
-        this.alueId = alueId;
+    public void setServiceId(Long serviceId) {
+        this.serviceId = serviceId;
     }
 
     public String getName() {
-        return nimi;
+        return name;
     }
 
-    public void setName(String nimi) {
-        this.nimi = nimi;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public int getType() {
-        return tyyppi;
+    public Integer getType() {
+        return type;
     }
 
-    public void setType(int tyyppi) {
-        this.tyyppi = tyyppi;
+    public void setType(Integer type) {
+        this.type = type;
     }
 
     public String getDescription() {
-        return kuvaus;
+        return description;
     }
 
-    public void setDescription(String kuvaus) {
-        this.kuvaus = kuvaus;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public double getPrice() {
-        return hinta;
+    public Double getPrice() {
+        return price;
     }
 
-    public void setPrice(double hinta) {
-        this.hinta = hinta;
+    public void setPrice(Double price) {
+        this.price = price;
     }
 
-    public double getVat() {
-        return alv;
+    public Double getVat() {
+        return vat;
     }
 
-    public void setVat(double alv) {
-        this.alv = alv;
+    public void setVat(Double vat) {
+        this.vat = vat;
     }
 
+    public Area getAreaId() {
+        return areaId;
+    }
 
-
+    public void setAreaId(Area areaId) {
+        this.areaId = areaId;
+    }
 }

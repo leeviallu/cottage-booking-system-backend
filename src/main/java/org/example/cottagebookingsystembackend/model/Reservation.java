@@ -9,70 +9,84 @@ import java.util.Date;
 public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long varausId;
-    private Long asiakasId;
-    private Long mokkiMokkiId;
-    private Date varattuPvm;
-    private Date vahvistusPvm;
-    private Date varattuAlkupvm;
-    private Date varattuLoppupvm;
+    @Column(name = "varaus_id")
+    private Long reservationId;
+
+    @Column(name = "varattu_pvm")
+    private Date reservationDate;
+
+    @Column(name = "vahvistus_pvm")
+    private Date confirmationDate;
+
+    @Column(name = "varattu_alkupvm")
+    private Date reservationStartingDate;
+
+    @Column(name = "varattu_loppupvm")
+    private Date reservationEndingDate;
+
+    @ManyToOne
+    @JoinColumn(name = "asiakas_id")
+    private Customer customerId;
+
+    @ManyToOne
+    @JoinColumn(name = "mokki_mokki_id")
+    private Cottage cottageId;
 
     public  Reservation() {}
 
     public Long getReservationId() {
-        return varausId;
+        return reservationId;
     }
 
-    public void setReservationId(Long varausId) {
-        this.varausId = varausId;
-    }
-
-    public Long getCustomerId() {
-        return asiakasId;
-    }
-
-    public void setCustomerId(Long asiakasId) {
-        this.asiakasId = asiakasId;
-    }
-
-    public Long getCottageId() {
-        return mokkiMokkiId;
-    }
-
-    public void setCottageId(Long mokkiMokkiId) {
-        this.mokkiMokkiId = mokkiMokkiId;
+    public void setReservationId(Long reservationId) {
+        this.reservationId = reservationId;
     }
 
     public Date getReservationDate() {
-        return varattuPvm;
+        return reservationDate;
     }
 
-    public void setReservationDate(Date varattuPvm) {
-        this.varattuPvm = varattuPvm;
+    public void setReservationDate(Date reservationDate) {
+        this.reservationDate = reservationDate;
     }
 
     public Date getConfirmationDate() {
-        return vahvistusPvm;
+        return confirmationDate;
     }
 
-    public void setConfirmationDate(Date vahvistusPvm) {
-        this.vahvistusPvm = vahvistusPvm;
+    public void setConfirmationDate(Date confirmationDate) {
+        this.confirmationDate = confirmationDate;
     }
 
-    public Date getReservationStartDate() {
-        return varattuAlkupvm;
+    public Date getReservationStartingDate() {
+        return reservationStartingDate;
     }
 
-    public void setReservationStartDate(Date varattuAlkupvm) {
-        this.varattuAlkupvm = varattuAlkupvm;
+    public void setReservationStartingDate(Date reservationStartingDate) {
+        this.reservationStartingDate = reservationStartingDate;
     }
 
-    public Date getReservationEndDate() {
-        return varattuLoppupvm;
+    public Date getReservationEndingDate() {
+        return reservationEndingDate;
     }
 
-    public void setReservationEndDate(Date varattuLoppupvm) {
-        this.varattuLoppupvm = varattuLoppupvm;
+    public void setReservationEndingDate(Date reservationEndingDate) {
+        this.reservationEndingDate = reservationEndingDate;
     }
 
+    public Customer getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Customer customerId) {
+        this.customerId = customerId;
+    }
+
+    public Cottage getCottageId() {
+        return cottageId;
+    }
+
+    public void setCottageId(Cottage cottageId) {
+        this.cottageId = cottageId;
+    }
 }
