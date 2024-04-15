@@ -30,7 +30,7 @@ public class CottageController {
 
     @PostMapping
     public ResponseEntity<String> createCottage(@RequestBody Cottage cottage) {
-        if (cottage.getAreaId() == null || cottage.getPostalCode() == null) {
+        if (cottage.getArea() == null || cottage.getPostalcode() == null) {
             return ResponseEntity.unprocessableEntity().build();
         }
         cottageService.createCottage(cottage);
@@ -42,7 +42,7 @@ public class CottageController {
         Cottage existingCottage = cottageService.getCottageById(id);
         if (existingCottage != null) {
             cottage.setCottageId(id);
-            if (cottage.getCottageId() == null || cottage.getAreaId() == null || cottage.getPostalCode() == null) {
+            if (cottage.getCottageId() == null || cottage.getArea() == null || cottage.getPostalcode() == null) {
                 return ResponseEntity.unprocessableEntity().build();
             }
             cottageService.updateCottage(cottage);

@@ -7,37 +7,26 @@ import jakarta.persistence.*;
 public class Area {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long alueId;
-    private String nimi;
+    @Column(name = "alue_id")
+    private Long areaId;
+    @Column(name = "nimi")
+    private String name;
 
     public Area() {}
 
-    public Area(Long alueId, String nimi) {
-        this.alueId = alueId;
-        this.nimi = nimi;
-    }
-
-    public void setAreaId(Long alueId) {
-        this.alueId = alueId;
-    }
-
-    public void setName(String nimi) {
-        this.nimi = nimi;
-    }
-
     public Long getAreaId() {
-        return alueId;
+        return areaId;
+    }
+
+    public void setAreaId(Long areaId) {
+        this.areaId = areaId;
     }
 
     public String getName() {
-        return nimi;
+        return name;
     }
 
-    @Override
-    public String toString() {
-        return "Area{" +
-                "areaId=" + alueId +
-                ", name='" + nimi + '\'' +
-                '}';
+    public void setName(String name) {
+        this.name = name;
     }
 }

@@ -32,7 +32,7 @@ public class CustomerController {
 
     @PostMapping
     public ResponseEntity<String> createCustomer(@RequestBody Customer customer) {
-        if (customer.getPostalCode() == null) {
+        if (customer.getPostalcode() == null) {
             return ResponseEntity.unprocessableEntity().build();
         }
         customerService.createCustomer(customer);
@@ -44,8 +44,8 @@ public class CustomerController {
     public ResponseEntity<String> updateCustomer(@PathVariable Long id, @RequestBody Customer customer) {
         Customer existingCustomer = customerService.getCustomerById(id);
         if (existingCustomer != null) {
-            customer.setCustomerId(id);
-            if (customer.getCustomerId() == null || customer.getPostalCode() == null) {
+            customer.setCustomer(id);
+            if (customer.getCustomer() == null || customer.getPostalcode() == null) {
                 return ResponseEntity.unprocessableEntity().build();
             }
             customerService.updateCustomer(customer);

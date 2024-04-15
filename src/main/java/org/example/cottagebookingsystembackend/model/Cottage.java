@@ -7,87 +7,99 @@ import jakarta.persistence.*;
 public class Cottage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long mokkiId;
-    private Long alueId;
-    private String postinro;
-    private String mokkinimi;
-    private String katuosoite;
-    private double hinta;
-    private String kuvaus;
-    private int henkilomaara;
-    private String varustelu;
+    @Column(name = "mokki_id")
+    private Long cottageId;
+    @ManyToOne
+    @JoinColumn(name = "alue_id")
+    private Area area;
+    @ManyToOne
+    @JoinColumn(name = "postinro")
+    private Postal postalcode;
+    @Column(name = "mokkinimi")
+    private String name;
+    @Column(name = "katuosoite")
+    private String address;
+    @Column(name = "hinta")
+    private double price;
+    @Column(name = "kuvaus")
+    private String description;
+    @Column(name = "henkilomaara")
+    private int capacity;
+    @Column(name = "varustelu")
+    private String equipment;
 
     public Cottage() {}
 
+
     public Long getCottageId() {
-        return mokkiId;
+        return cottageId;
     }
 
-    public void setCottageId(Long mokkiId) {
-        this.mokkiId = mokkiId;
+    public void setCottageId(Long cottageId) {
+        this.cottageId = cottageId;
     }
 
-    public Long getAreaId() {
-        return alueId;
+    public Area getArea() {
+        return area;
     }
 
-    public void setAreaId(Long alueId) {
-        this.alueId = alueId;
+    public void setArea(Area area) {
+        this.area = area;
     }
 
-    public String getPostalCode() {
-        return postinro;
+    public Postal getPostalcode() {
+        return postalcode;
     }
 
-    public void setPostalCode(String postinro) {
-        this.postinro = postinro;
+    public void setPostalcode(Postal postalcode) {
+        this.postalcode = postalcode;
     }
 
-    public String getCottageName() {
-        return mokkinimi;
+    public String getName() {
+        return name;
     }
 
-    public void setCottageName(String mokkinimi) {
-        this.mokkinimi = mokkinimi;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getAddress() {
-        return katuosoite;
+        return address;
     }
 
-    public void setAddress(String katuosoite) {
-        this.katuosoite = katuosoite;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public double getPrice() {
-        return hinta;
+        return price;
     }
 
-    public void setPrice(double hinta) {
-        this.hinta = hinta;
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     public String getDescription() {
-        return kuvaus;
+        return description;
     }
 
-    public void setDescription(String kuvaus) {
-        this.kuvaus = kuvaus;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public int getPersonCapacity() {
-        return henkilomaara;
+    public int getCapacity() {
+        return capacity;
     }
 
-    public void setPersonCapacity(int henkilomaara) {
-        this.henkilomaara = henkilomaara;
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
     }
 
     public String getEquipment() {
-        return varustelu;
+        return equipment;
     }
 
-    public void setEquipment(String varustelu) {
-        this.varustelu = varustelu;
+    public void setEquipment(String equipment) {
+        this.equipment = equipment;
     }
 }

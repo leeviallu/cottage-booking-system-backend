@@ -7,57 +7,62 @@ import jakarta.persistence.*;
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long asiakasId;
-    private String postinro;
-    private String etunimi;
-    private String sukunimi;
-    private String lahiosoite;
+    @Column(name = "asiakas_id")
+    private Long customer;
+    @ManyToOne
+    @JoinColumn(name = "postinro")
+    private Postal postalcode;
+    @Column(name = "etunimi")
+    private String firstname;
+    @Column(name = "sukunimi")
+    private String lastname;
+    @Column(name = "lahiosoite")
+    private String address;
+    @Column(name = "email")
     private String email;
-    private String puhelinnro;
-
-
-
+    @Column(name = "puhelinnro")
+    private String phonenumber;
 
     public Customer() {}
 
-    public Long getCustomerId() {
-        return asiakasId;
+    public Long getCustomer() {
+        return customer;
     }
 
-    public void setCustomerId(long asiakasId) {
-        this.asiakasId = asiakasId;
+    public void setCustomer(Long customer) {
+        this.customer = customer;
     }
 
-    public String getFirstName() {
-        return etunimi;
+    public Postal getPostalcode() {
+        return postalcode;
     }
 
-    public void setFirstName(String etunimi) {
-        this.etunimi = etunimi;
+    public void setPostalcode(Postal postalcode) {
+        this.postalcode = postalcode;
     }
 
-    public String getPostalCode() {
-        return postinro;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setPostalCode(String postinro) {
-        this.postinro = postinro;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
-    public String getLastName() {
-        return sukunimi;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setLastName(String sukunimi) {
-        this.sukunimi = sukunimi;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public String getAddress() {
-        return lahiosoite;
+        return address;
     }
 
-    public void setAddress(String lahiosoite) {
-        this.lahiosoite = lahiosoite;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getEmail() {
@@ -68,12 +73,12 @@ public class Customer {
         this.email = email;
     }
 
-    public String getPhoneNumber() {
-        return puhelinnro;
+    public String getPhonenumber() {
+        return phonenumber;
     }
 
-    public void setPhoneNumber(String puhelinnro) {
-        this.puhelinnro = puhelinnro;
+    public void setPhonenumber(String phonenumber) {
+        this.phonenumber = phonenumber;
     }
 }
 
