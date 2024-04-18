@@ -26,11 +26,11 @@ public class Reservation {
 
     @ManyToOne
     @JoinColumn(name = "asiakas_id")
-    private Customer customerId;
+    private Customer customer;
 
     @ManyToOne
     @JoinColumn(name = "mokki_mokki_id")
-    private Cottage cottageId;
+    private Cottage cottage;
 
     public  Reservation() {}
 
@@ -74,19 +74,19 @@ public class Reservation {
         this.reservationEndingDate = reservationEndingDate;
     }
 
-    public Customer getCustomerId() {
-        return customerId;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setCustomerId(Customer customerId) {
-        this.customerId = customerId;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
-    public Cottage getCottageId() {
-        return cottageId;
+    public Cottage getCottage() {
+        return cottage;
     }
 
-    public void setCottageId(Cottage cottageId) {
-        this.cottageId = cottageId;
+    public void setCottage(Cottage cottage) {
+        this.cottage = cottage;
     }
 }

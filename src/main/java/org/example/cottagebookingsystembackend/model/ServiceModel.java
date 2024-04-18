@@ -25,7 +25,7 @@ public class ServiceModel {
 
     @ManyToOne
     @JoinColumn(name = "alue_id")
-    private Area areaId;
+    private Area area;
 
     public ServiceModel() {
     }
@@ -78,11 +78,11 @@ public class ServiceModel {
         this.vat = vat;
     }
 
-    public Area getAreaId() {
-        return areaId;
+    public Area getArea() {
+        return area;
     }
 
-    public void setAreaId(Area areaId) {
-        this.areaId = areaId;
+    public void setArea(Area area) {
+        this.area = area;
     }
 }

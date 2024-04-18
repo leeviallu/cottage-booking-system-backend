@@ -8,10 +8,10 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "asiakas_id")
-    private Long customer;
+    private Long customerId;
     @ManyToOne
     @JoinColumn(name = "postinro")
-    private Postal postalcode;
+    private Postal postal;
     @Column(name = "etunimi")
     private String firstname;
     @Column(name = "sukunimi")
@@ -25,20 +25,20 @@ public class Customer {
 
     public Customer() {}
 
-    public Long getCustomer() {
-        return customer;
+    public Long getCustomerId() {
+        return customerId;
     }
 
-    public void setCustomer(Long customer) {
-        this.customer = customer;
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
     }
 
-    public Postal getPostalcode() {
-        return postalcode;
+    public Postal getPostal() {
+        return postal;
     }
 
-    public void setPostalcode(Postal postalcode) {
-        this.postalcode = postalcode;
+    public void setPostal(Postal postal) {
+        this.postal = postal;
     }
 
     public String getFirstname() {

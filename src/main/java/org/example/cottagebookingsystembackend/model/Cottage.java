@@ -14,7 +14,7 @@ public class Cottage {
     private Area area;
     @ManyToOne
     @JoinColumn(name = "postinro")
-    private Postal postalcode;
+    private Postal postal;
     @Column(name = "mokkinimi")
     private String name;
     @Column(name = "katuosoite")
@@ -47,12 +47,12 @@ public class Cottage {
         this.area = area;
     }
 
-    public Postal getPostalcode() {
-        return postalcode;
+    public Postal getPostal() {
+        return postal;
     }
 
-    public void setPostalcode(Postal postalcode) {
-        this.postalcode = postalcode;
+    public void setPostal(Postal postal) {
+        this.postal = postal;
     }
 
     public String getName() {

@@ -1,6 +1,7 @@
 package org.example.cottagebookingsystembackend.controller;
 
 import org.example.cottagebookingsystembackend.model.Customer;
+import org.example.cottagebookingsystembackend.model.Postal;
 import org.example.cottagebookingsystembackend.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -32,9 +33,14 @@ public class CustomerController {
 
     @PostMapping
     public ResponseEntity<String> createCustomer(@RequestBody Customer customer) {
-        if (customer.getPostalcode() == null) {
-            return ResponseEntity.unprocessableEntity().build();
+        if (customer.getPostal().getPostalcode() == null) {
+            return ResponseEntity.badRequest().body("Required fields are missing.");
         }
+
+        Postal postal = new Postal();
+        postal.setPostalcode(customer.getPostal().getPostalcode());
+        customer.setPostal(postal);
+
         customerService.createCustomer(customer);
         return ResponseEntity.ok("Customer has been created");
     }
@@ -44,10 +50,16 @@ public class CustomerController {
     public ResponseEntity<String> updateCustomer(@PathVariable Long id, @RequestBody Customer customer) {
         Customer existingCustomer = customerService.getCustomerById(id);
         if (existingCustomer != null) {
-            customer.setCustomer(id);
-            if (customer.getCustomer() == null || customer.getPostalcode() == null) {
-                return ResponseEntity.unprocessableEntity().build();
+            customer.setCustomerId(id);
+
+            if (customer.getCustomerId() == null || customer.getPostal().getPostalcode() == null) {
+                return ResponseEntity.badRequest().body("Required fields are missing.");
             }
+
+            Postal postal = new Postal();
+            postal.setPostalcode(customer.getPostal().getPostalcode());
+            customer.setPostal(postal);
+
             customerService.updateCustomer(customer);
             return ResponseEntity.ok("Customer updated successfully");
         }

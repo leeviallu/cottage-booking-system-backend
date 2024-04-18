@@ -1,8 +1,7 @@
 package org.example.cottagebookingsystembackend.controller;
 
 
-import org.example.cottagebookingsystembackend.model.Reservation;
-import org.example.cottagebookingsystembackend.model.ServicesOfReservation;
+import org.example.cottagebookingsystembackend.model.*;
 import org.example.cottagebookingsystembackend.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -50,9 +49,18 @@ public class ReservationController {
 
     @PostMapping
     public ResponseEntity<String> createHousingReservation(@RequestBody Reservation reservation) {
-        if (reservation.getCustomerId() == null || reservation.getCottageId() == null) {
-            return ResponseEntity.unprocessableEntity().build();
+        if (reservation.getCustomer().getCustomerId() == null || reservation.getCottage().getCottageId() == null) {
+            return ResponseEntity.badRequest().body("Required fields are missing.");
         }
+
+        Customer customer = new Customer();
+        customer.setCustomerId(reservation.getCustomer().getCustomerId());
+        reservation.setCustomer(customer);
+
+        Cottage cottage = new Cottage();
+        cottage.setCottageId(reservation.getCottage().getCottageId());
+        reservation.setCottage(cottage);
+
         reservationService.createReservation(reservation);
         return ResponseEntity.ok("Reservation has been created.");
     }
@@ -62,9 +70,19 @@ public class ReservationController {
         Reservation existingHousingReservation = reservationService.getReservationById(id);
         if (existingHousingReservation != null) {
             reservation.setReservationId(id);
-            if (reservation.getReservationId() == null || reservation.getCustomerId() == null || reservation.getCottageId() == null) {
-                return ResponseEntity.unprocessableEntity().build();
+
+            if (reservation.getReservationId() == null || reservation.getCustomer().getCustomerId() == null || reservation.getCottage().getCottageId() == null) {
+                return ResponseEntity.badRequest().body("Required fields are missing.");
             }
+
+            Customer customer = new Customer();
+            customer.setCustomerId(reservation.getCustomer().getCustomerId());
+            reservation.setCustomer(customer);
+
+            Cottage cottage = new Cottage();
+            cottage.setCottageId(reservation.getCottage().getCottageId());
+            reservation.setCottage(cottage);
+
             reservationService.updateReservation(reservation);
             return ResponseEntity.ok("Reservation updated successfully");
         }

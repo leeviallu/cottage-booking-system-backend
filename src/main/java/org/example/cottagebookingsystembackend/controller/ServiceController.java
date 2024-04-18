@@ -1,4 +1,5 @@
 package org.example.cottagebookingsystembackend.controller;
+import org.example.cottagebookingsystembackend.model.Area;
 import org.example.cottagebookingsystembackend.model.ServiceModel;
 import org.example.cottagebookingsystembackend.service.ServiceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,9 +33,14 @@ public class ServiceController {
 
     @PostMapping
     public ResponseEntity<String> createService(@RequestBody ServiceModel serviceModel) {
-        if (serviceModel.getAreaId() == null || serviceModel.getServiceId()==null) {
-            return ResponseEntity.unprocessableEntity().build();
+        if (serviceModel.getServiceId() == null || serviceModel.getArea().getAreaId() == null) {
+            return ResponseEntity.badRequest().body("Required fields are missing.");
         }
+
+        Area area = new Area();
+        area.setAreaId(serviceModel.getArea().getAreaId());
+        serviceModel.setArea(area);
+
         serviceService.createService(serviceModel);
         return ResponseEntity.ok("Service has been created");
     }
@@ -43,9 +49,14 @@ public class ServiceController {
         ServiceModel existingService = serviceService.getServiceById(id);
         if (existingService != null) {
             serviceModel.setServiceId(id);
-            if (serviceModel.getServiceId() == null || serviceModel.getAreaId() == null) {
-                return ResponseEntity.unprocessableEntity().build();
+            if (serviceModel.getServiceId() == null || serviceModel.getArea().getAreaId() == null) {
+                return ResponseEntity.badRequest().body("Required fields are missing.");
             }
+
+            Area area = new Area();
+            area.setAreaId(serviceModel.getArea().getAreaId());
+            serviceModel.setArea(area);
+
             serviceService.updateService(serviceModel);
             return ResponseEntity.ok("Service updated successfully");
         }

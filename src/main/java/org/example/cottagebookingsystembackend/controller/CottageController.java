@@ -1,6 +1,8 @@
 package org.example.cottagebookingsystembackend.controller;
 
+import org.example.cottagebookingsystembackend.model.Area;
 import org.example.cottagebookingsystembackend.model.Cottage;
+import org.example.cottagebookingsystembackend.model.Postal;
 import org.example.cottagebookingsystembackend.service.CottageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -30,9 +32,18 @@ public class CottageController {
 
     @PostMapping
     public ResponseEntity<String> createCottage(@RequestBody Cottage cottage) {
-        if (cottage.getArea() == null || cottage.getPostalcode() == null) {
-            return ResponseEntity.unprocessableEntity().build();
+        if (cottage.getArea().getAreaId() == null || cottage.getPostal().getPostalcode() == null) {
+            return ResponseEntity.badRequest().body("Required fields are missing.");
         }
+
+        Area area = new Area();
+        area.setAreaId(cottage.getArea().getAreaId());
+        cottage.setArea(area);
+
+        Postal postal = new Postal();
+        postal.setPostalcode(cottage.getPostal().getPostalcode());
+        cottage.setPostal(postal);
+
         cottageService.createCottage(cottage);
         return ResponseEntity.ok("Cottage has been created");
     }
@@ -42,9 +53,18 @@ public class CottageController {
         Cottage existingCottage = cottageService.getCottageById(id);
         if (existingCottage != null) {
             cottage.setCottageId(id);
-            if (cottage.getCottageId() == null || cottage.getArea() == null || cottage.getPostalcode() == null) {
-                return ResponseEntity.unprocessableEntity().build();
+
+            if (cottage.getCottageId() == null || cottage.getArea().getAreaId() == null || cottage.getPostal().getPostalcode() == null) {
+                return ResponseEntity.badRequest().body("Required fields are missing.");
             }
+
+            Area area = new Area();
+            area.setAreaId(cottage.getArea().getAreaId());
+            cottage.setArea(area);
+
+            Postal postal = new Postal();
+            postal.setPostalcode(cottage.getPostal().getPostalcode());
+            cottage.setPostal(postal);
             cottageService.updateCottage(cottage);
             return ResponseEntity.ok("Cottage updated successfully");
         }
