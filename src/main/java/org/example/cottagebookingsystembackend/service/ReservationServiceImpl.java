@@ -48,7 +48,12 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    public List<ServicesOfReservation> getAllReservationsByDate(Date startDate, Date endDate) {
-        return reservationRepository.findAllReservationsByDate(startDate, endDate);
+    public List<ServicesOfReservation> getAllServiceReservationsByDate(Date startDate, Date endDate) {
+        return reservationRepository.findAllServiceReservationsByDate(startDate, endDate);
+    }
+
+    @Override
+    public List<Reservation> getAllCottageReservationsByDate(Date startDate, Date endDate) {
+        return reservationRepository.findAllCottageReservationsByDate(startDate, endDate);
     }
 }
