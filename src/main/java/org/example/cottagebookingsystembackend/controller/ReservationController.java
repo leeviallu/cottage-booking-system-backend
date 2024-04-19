@@ -24,12 +24,12 @@ public class ReservationController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Reservation> getHousingReservationById(@PathVariable Long id) {
-        return ResponseEntity.ok().body(reservationService.getReservationById(id));
+        return ResponseEntity.ok(reservationService.getReservationById(id));
     }
 
     @GetMapping
     public ResponseEntity<List<Reservation>> getAllHousingReservations() {
-        return ResponseEntity.ok().body(reservationService.getAllReservations());
+        return ResponseEntity.ok(reservationService.getAllReservations());
     }
 
     @GetMapping("/cottages")

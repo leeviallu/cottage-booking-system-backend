@@ -22,13 +22,13 @@ public class ServiceController {
     }
 
     @GetMapping("/{id}")
-    public ServiceModel getServiceById(@PathVariable Long id) {
-        return serviceService.getServiceById(id);
+    public ResponseEntity<ServiceModel> getServiceById(@PathVariable Long id) {
+        return ResponseEntity.ok(serviceService.getServiceById(id));
     }
 
     @GetMapping
-    public List<ServiceModel> getAllServices(){
-        return serviceService.getAllServices();
+    public ResponseEntity<List<ServiceModel>> getAllServices(){
+        return ResponseEntity.ok(serviceService.getAllServices());
     }
 
     @PostMapping

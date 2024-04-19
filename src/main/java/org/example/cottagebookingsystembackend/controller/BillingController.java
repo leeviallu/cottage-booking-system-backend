@@ -19,13 +19,13 @@ public class BillingController {
     }
 
     @GetMapping("/{id}")
-    public Billing getBillingById(@PathVariable Long id) {
-        return billingService.getBillingById(id);
+    public ResponseEntity<Billing> getBillingById(@PathVariable Long id) {
+        return ResponseEntity.ok(billingService.getBillingById(id));
     }
 
     @GetMapping
-    public List<Billing> getAllCottages() {
-        return billingService.getAllBillings();
+    public ResponseEntity<List<Billing>> getAllCottages() {
+        return ResponseEntity.ok(billingService.getAllBillings());
     }
 
     @PostMapping

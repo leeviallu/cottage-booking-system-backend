@@ -21,13 +21,13 @@ public class CottageController {
     }
 
     @GetMapping("/{id}")
-    public Cottage getCottageById(@PathVariable Long id) {
-        return cottageService.getCottageById(id);
+    public ResponseEntity<Cottage> getCottageById(@PathVariable Long id) {
+        return ResponseEntity.ok(cottageService.getCottageById(id));
     }
 
     @GetMapping
-    public List<Cottage> getAllCottages() {
-        return cottageService.getAllCottages();
+    public ResponseEntity<List<Cottage>> getAllCottages() {
+        return ResponseEntity.ok(cottageService.getAllCottages());
     }
 
     @PostMapping

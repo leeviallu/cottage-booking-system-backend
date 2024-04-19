@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -20,13 +21,13 @@ public class AreaController {
     }
 
     @GetMapping("/{id}")
-    public Area getAreaById(@PathVariable Long id) {
-        return areaService.getAreaById(id);
+    public ResponseEntity<Area> getAreaById(@PathVariable Long id) {
+        return ResponseEntity.ok(areaService.getAreaById(id));
     }
 
     @GetMapping
-    public List<Area> getAllAreas() {
-        return areaService.getAllAreas();
+    public ResponseEntity<List<Area>> getAllAreas() {
+        return ResponseEntity.ok(areaService.getAllAreas());
     }
 
     @PostMapping
