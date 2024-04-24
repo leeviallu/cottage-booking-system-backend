@@ -29,7 +29,7 @@ public class Reservation {
     private Customer customer;
 
     @ManyToOne
-    @JoinColumn(name = "mokki_mokki_id")
+    @JoinColumn(name = "mokki_id")
     private Cottage cottage;
 
     public  Reservation() {}
