@@ -12,8 +12,8 @@ import java.util.List;
 
 @Repository
 public interface ReservationRepository extends JpaRepository<Reservation, Long> {
-    @Query("SELECT sor, s FROM ServicesOfReservation sor JOIN sor.reservation r JOIN sor.service s WHERE r.reservationStartingDate>:startDate and r.reservationEndingDate<:endDate")
-    List<ServicesOfReservation> findAllServiceReservationsByDate(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
-    @Query("SELECT r FROM Reservation r WHERE r.reservationStartingDate>:startDate and r.reservationEndingDate<:endDate")
-    List<Reservation> findAllCottageReservationsByDate(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
+    @Query("SELECT sor, s FROM ServicesOfReservation sor JOIN sor.reservation r JOIN sor.service s WHERE s.area.areaId=:areaId AND r.reservationStartingDate>:startDate AND r.reservationEndingDate<:endDate")
+    List<ServicesOfReservation> findAllServiceReservationsByDate(@Param("areaId") long areaId, @Param("startDate") Date startDate, @Param("endDate") Date endDate);
+    @Query("SELECT r FROM ServicesOfReservation sor JOIN sor.reservation r JOIN sor.service s WHERE s.area.areaId=:areaId AND r.reservationStartingDate>:startDate and r.reservationEndingDate<:endDate")
+    List<Reservation> findAllCottageReservationsByDate(@Param("areaId") long areaId, @Param("startDate") Date startDate, @Param("endDate") Date endDate);
 }

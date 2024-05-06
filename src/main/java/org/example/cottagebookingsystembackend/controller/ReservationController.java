@@ -32,28 +32,28 @@ public class ReservationController {
         return ResponseEntity.ok(reservationService.getAllReservations());
     }
 
-    @GetMapping("/cottages")
-    public ResponseEntity<List<ServicesOfReservation>> getCottageReservationsByDate(@RequestParam String startDate, @RequestParam String endDate) {
+    @GetMapping("/cottages/{areaId}")
+    public ResponseEntity<List<Reservation>> getCottageReservationsByDate(@PathVariable Long areaId, @RequestParam String startDate, @RequestParam String endDate) {
         SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
 
         try {
             Date startFormatted = inputFormat.parse(startDate);
             Date endFormatted = inputFormat.parse(endDate);
-            return ResponseEntity.ok().body(reservationService.getAllServiceReservationsByDate(startFormatted, endFormatted));
+            return ResponseEntity.ok().body(reservationService.getAllCottageReservationsByDate(areaId, startFormatted, endFormatted));
         } catch (ParseException e) {
             e.printStackTrace();
         }
         return ResponseEntity.notFound().build();
     }
 
-    @GetMapping("/services")
-    public ResponseEntity<List<Reservation>> getServiceReservationsByDate(@RequestParam String startDate, @RequestParam String endDate) {
+    @GetMapping("/services/{areaId}")
+    public ResponseEntity<List<ServicesOfReservation>> getServiceReservationsByDate(@PathVariable Long areaId, @RequestParam String startDate, @RequestParam String endDate) {
         SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
 
         try {
             Date startFormatted = inputFormat.parse(startDate);
             Date endFormatted = inputFormat.parse(endDate);
-            return ResponseEntity.ok().body(reservationService.getAllCottageReservationsByDate(startFormatted, endFormatted));
+            return ResponseEntity.ok().body(reservationService.getAllServiceReservationsByDate(areaId, startFormatted, endFormatted));
         } catch (ParseException e) {
             e.printStackTrace();
         }

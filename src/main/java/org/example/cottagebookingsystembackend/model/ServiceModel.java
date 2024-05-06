@@ -11,9 +11,6 @@ public class ServiceModel {
     @Column(name = "nimi")
     private String name;
 
-    @Column(name = "tyyppi")
-    private Integer type;
-
     @Column(name = "kuvaus")
     private String description;
 
@@ -28,6 +25,7 @@ public class ServiceModel {
     private Area area;
 
     public ServiceModel() {
+        vat = 24.0;
     }
 
     public Long getServiceId() {
@@ -44,14 +42,6 @@ public class ServiceModel {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Integer getType() {
-        return type;
-    }
-
-    public void setType(Integer type) {
-        this.type = type;
     }
 
     public String getDescription() {

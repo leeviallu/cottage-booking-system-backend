@@ -12,7 +12,7 @@ public interface ReservationService {
     void updateReservation(Reservation housingReservation);
     void deleteReservation(Long id);
     List<Reservation> getAllReservations();
-    List<ServicesOfReservation> getAllServiceReservationsByDate(Date startDate, Date endDate);
-    List<Reservation> getAllCottageReservationsByDate(Date startDate, Date endDate);
+    List<ServicesOfReservation> getAllServiceReservationsByDate(long areaId, Date startDate, Date endDate);
+    List<Reservation> getAllCottageReservationsByDate(long areaId, Date startDate, Date endDate);
 
 }
