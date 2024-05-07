@@ -1,6 +1,7 @@
 package org.example.cottagebookingsystembackend.service;
 
 import org.example.cottagebookingsystembackend.model.ServiceModel;
+import org.example.cottagebookingsystembackend.repository.ReservationRepository;
 import org.example.cottagebookingsystembackend.repository.ServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,9 +14,11 @@ public class ServiceServiceImpl implements ServiceService {
     private final ServiceRepository serviceRepository;
 
 
+
     @Autowired
     public ServiceServiceImpl(ServiceRepository serviceRepository) {
         this.serviceRepository = serviceRepository;
+
     }
 
     @Override
@@ -36,9 +39,9 @@ public class ServiceServiceImpl implements ServiceService {
 
     @Override
     public void deleteService(Long id) {
+        serviceRepository.deleteFromSorByServiceId(id);
         serviceRepository.deleteById(id);
     }
-
     public List<ServiceModel> getAllServices() {
         return (List<ServiceModel>) serviceRepository.findAll();
     }

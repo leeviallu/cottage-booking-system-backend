@@ -33,7 +33,7 @@ public class ServiceController {
 
     @PostMapping
     public ResponseEntity<String> createService(@RequestBody ServiceModel serviceModel) {
-        if (serviceModel.getServiceId() == null || serviceModel.getArea().getAreaId() == null) {
+        if (serviceModel.getArea().getAreaId() == null) {
             return ResponseEntity.badRequest().body("Required fields are missing.");
         }
 

@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 @Table(name = "palvelu")
 public class ServiceModel {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "palvelu_id")
     private Long serviceId;
 
