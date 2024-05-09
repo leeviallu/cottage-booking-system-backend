@@ -35,6 +35,9 @@ public class CottageServiceImpl implements CottageService {
 
     @Override
     public void deleteCottage(Long id) {
+        cottageRepository.deleteBillingByCottageId(id);
+        cottageRepository.deleteSorByCottageId(id);
+        cottageRepository.deleteReservationsByCottageId(id);
         cottageRepository.deleteById(id);
     }
 
