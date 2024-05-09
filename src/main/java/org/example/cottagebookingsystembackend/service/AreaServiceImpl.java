@@ -35,6 +35,12 @@ public class AreaServiceImpl implements AreaService {
 
     @Override
     public void deleteArea(Long id) {
+        areaRepository.deleteSorReservationByAreaId(id);
+        areaRepository.deleteSorServiceByAreaId(id);
+        areaRepository.deleteBillingByAreaId(id);
+        areaRepository.deleteServiceByAreaId(id);
+        areaRepository.deleteReservationsByAreaId(id);
+        areaRepository.deleteCottagesByAreaId(id);
         areaRepository.deleteById(id);
     }
 
