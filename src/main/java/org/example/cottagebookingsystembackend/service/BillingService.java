@@ -1,7 +1,9 @@
 package org.example.cottagebookingsystembackend.service;
 
 import org.example.cottagebookingsystembackend.model.Billing;
+import org.example.cottagebookingsystembackend.model.Reservation;
 
+import java.util.Date;
 import java.util.List;
 
 public interface BillingService {
@@ -10,5 +12,5 @@ public interface BillingService {
     void updateBilling(Billing billing);
     void deleteBilling(Long id);
     List<Billing> getAllBillings();
-
+    List<Object[]> getReservationsByConfirmationDate(Date confirmationDate);
 }

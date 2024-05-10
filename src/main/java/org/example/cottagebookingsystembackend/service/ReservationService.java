@@ -14,5 +14,4 @@ public interface ReservationService {
     List<Reservation> getAllReservations();
     List<ServicesOfReservation> getAllServiceReservationsByDate(long areaId, Date startDate, Date endDate);
     List<Reservation> getAllCottageReservationsByDate(long areaId, Date startDate, Date endDate);
-
 }
