@@ -1,7 +1,6 @@
 package org.example.cottagebookingsystembackend.controller;
 
 import org.example.cottagebookingsystembackend.model.Billing;
-import org.example.cottagebookingsystembackend.model.Reservation;
 import org.example.cottagebookingsystembackend.service.BillingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +10,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 
 @RestController
 @RequestMapping("/api/billings")
@@ -32,7 +30,8 @@ public class BillingController {
     public ResponseEntity<List<Billing>> getAllCottages() {
         return ResponseEntity.ok(billingService.getAllBillings());
     }
-    @GetMapping("/confirmationDate")
+
+    @GetMapping("/reservation")
     public ResponseEntity<List<Object[]>> getReservationByConfirmationDate(@RequestParam String confirmationDate) {
         SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
         try {
