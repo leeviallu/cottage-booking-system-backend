@@ -44,4 +44,9 @@ public class CottageServiceImpl implements CottageService {
     public List<Cottage> getAllCottages() {
         return (List<Cottage>) cottageRepository.findAll();
     }
+
+    public List<Cottage> getAllCottagesByAreaId(Long areaId) {
+        return (List<Cottage>) cottageRepository.findAllCottagesByAreaId(areaId);
+    }
+
 }

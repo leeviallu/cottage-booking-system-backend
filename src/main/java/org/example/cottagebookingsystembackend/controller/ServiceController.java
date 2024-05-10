@@ -30,6 +30,10 @@ public class ServiceController {
     public ResponseEntity<List<ServiceModel>> getAllServices(){
         return ResponseEntity.ok(serviceService.getAllServices());
     }
+    @GetMapping("/area/{areaId}")
+    public ResponseEntity<List<ServiceModel>> getAllServicesByAreaId(@PathVariable Long areaId) {
+        return ResponseEntity.ok(serviceService.getAllServicesByAreaId(areaId));
+    }
 
     @PostMapping
     public ResponseEntity<String> createService(@RequestBody ServiceModel serviceModel) {

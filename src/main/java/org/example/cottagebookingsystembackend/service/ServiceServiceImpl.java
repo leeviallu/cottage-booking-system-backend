@@ -46,4 +46,7 @@ public class ServiceServiceImpl implements ServiceService {
         return (List<ServiceModel>) serviceRepository.findAll();
     }
 
+    public List<ServiceModel> getAllServicesByAreaId(Long areaId) {
+        return (List<ServiceModel>) serviceRepository.findAllServicesByAreaId(areaId);
+    }
 }

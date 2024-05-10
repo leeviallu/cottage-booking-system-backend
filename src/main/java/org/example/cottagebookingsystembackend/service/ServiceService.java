@@ -16,4 +16,6 @@ public interface ServiceService {
     void deleteService(Long id);
 
     List<ServiceModel> getAllServices();
+
+    List<ServiceModel> getAllServicesByAreaId(Long userId);
 }

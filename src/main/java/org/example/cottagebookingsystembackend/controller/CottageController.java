@@ -30,6 +30,11 @@ public class CottageController {
         return ResponseEntity.ok(cottageService.getAllCottages());
     }
 
+    @GetMapping("area/{areaId}")
+    public ResponseEntity<List<Cottage>> getAllCottagesByAreaId(@PathVariable Long areaId) {
+        return ResponseEntity.ok(cottageService.getAllCottagesByAreaId(areaId));
+    }
+
     @PostMapping
     public ResponseEntity<String> createCottage(@RequestBody Cottage cottage) {
         if (cottage.getArea().getAreaId() == null || cottage.getPostal().getPostalcode() == null) {

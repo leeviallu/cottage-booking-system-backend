@@ -10,4 +10,5 @@ public interface CottageService {
     void updateCottage(Cottage cottage);
     void deleteCottage(Long id);
     List<Cottage> getAllCottages();
+    List<Cottage> getAllCottagesByAreaId(Long areaId);
 }
