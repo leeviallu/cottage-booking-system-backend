@@ -1,8 +1,12 @@
 package org.example.cottagebookingsystembackend.service;
 
 
+import org.example.cottagebookingsystembackend.model.Billing;
+import org.example.cottagebookingsystembackend.model.Cottage;
 import org.example.cottagebookingsystembackend.model.Reservation;
 import org.example.cottagebookingsystembackend.model.ServicesOfReservation;
+import org.example.cottagebookingsystembackend.repository.BillingRepository;
+import org.example.cottagebookingsystembackend.repository.CottageRepository;
 import org.example.cottagebookingsystembackend.repository.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,10 +19,14 @@ import java.util.Optional;
 public class ReservationServiceImpl implements ReservationService {
 
     private final ReservationRepository reservationRepository;
+    private final BillingRepository billingRepository;
+    private final CottageRepository cottageRepository;
 
     @Autowired
-    public ReservationServiceImpl(ReservationRepository reservationRepository) {
+    public ReservationServiceImpl(ReservationRepository reservationRepository, BillingRepository billingRepository, CottageRepository cottageRepository) {
         this.reservationRepository = reservationRepository;
+        this.billingRepository = billingRepository;
+        this.cottageRepository = cottageRepository;
     }
 
     @Override
@@ -30,6 +38,16 @@ public class ReservationServiceImpl implements ReservationService {
     @Override
     public void createReservation(Reservation reservation) {
         reservationRepository.save(reservation);
+        Billing billing = new Billing();
+        billing.setReservationId(reservation.getReservationId());
+        Optional<Cottage> cottage = cottageRepository.findById(reservation.getCottage().getCottageId());
+        if (cottage.isPresent()) {
+            billing.setSum(cottage.get().getPrice());
+        } else {
+            billing.setSum(0);
+        }
+        billing.setIsPaid(false);
+        billingRepository.save(billing);
     }
 
     @Override
