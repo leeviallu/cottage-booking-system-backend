@@ -2,7 +2,6 @@ package org.example.cottagebookingsystembackend.repository;
 
 import jakarta.transaction.Transactional;
 import org.example.cottagebookingsystembackend.model.Cottage;
-import org.example.cottagebookingsystembackend.model.ServiceModel;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;

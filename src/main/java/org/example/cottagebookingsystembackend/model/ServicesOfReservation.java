@@ -7,9 +7,11 @@ import jakarta.persistence.*;
 @Table(name = "varauksen_palvelut")
 public class ServicesOfReservation {
     @Id
+    @Column(name = "palvelu_id")
     private Long serviceId;
 
     @Id
+    @Column(name = "varaus_id")
     private Long reservationId;
 
     @Column(name = "lkm")
