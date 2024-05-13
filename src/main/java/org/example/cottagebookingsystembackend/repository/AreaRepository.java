@@ -20,12 +20,12 @@ public interface AreaRepository extends CrudRepository<Area, Long> {
 
     @Modifying
     @Transactional
-    @Query("DELETE FROM ServicesOfReservation sor WHERE sor.reservation.reservationId IN (SELECT r.reservationId FROM Reservation r WHERE r.cottage.cottageId IN (SELECT c.cottageId FROM Cottage c WHERE c.area.areaId=:id))")
+    @Query("DELETE FROM ServicesOfReservation sor WHERE sor.reservationId IN (SELECT r.reservationId FROM Reservation r WHERE r.cottage.cottageId IN (SELECT c.cottageId FROM Cottage c WHERE c.area.areaId=:id))")
     void deleteSorReservationByAreaId(@Param("id") Long id);
 
     @Modifying
     @Transactional
-    @Query("DELETE FROM ServicesOfReservation sor WHERE sor.service.serviceId IN (SELECT s.serviceId FROM ServiceModel s WHERE s.area.areaId=:id)")
+    @Query("DELETE FROM ServicesOfReservation sor WHERE sor.serviceId IN (SELECT s.serviceId FROM ServiceModel s WHERE s.area.areaId=:id)")
     void deleteSorServiceByAreaId(@Param("id") Long id);
 
     @Modifying

@@ -47,7 +47,7 @@ public class ReservationController {
     }
 
     @GetMapping("/services/{areaId}")
-    public ResponseEntity<List<ServicesOfReservation>> getServiceReservationsByDate(@PathVariable Long areaId, @RequestParam String startDate, @RequestParam String endDate) {
+    public ResponseEntity<List<Object[]>> getServiceReservationsByDate(@PathVariable Long areaId, @RequestParam String startDate, @RequestParam String endDate) {
         SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
 
         try {

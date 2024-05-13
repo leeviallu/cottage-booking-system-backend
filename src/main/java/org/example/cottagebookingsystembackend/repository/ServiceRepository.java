@@ -15,7 +15,7 @@ public interface ServiceRepository extends CrudRepository<ServiceModel, Long> {
 
     @Modifying
     @Transactional
-    @Query("DELETE FROM ServicesOfReservation sor WHERE sor.service.serviceId=:id")
+    @Query("DELETE FROM ServicesOfReservation sor WHERE sor.serviceId=:id")
     void deleteFromSorByServiceId(@Param("id") Long id);
 
 

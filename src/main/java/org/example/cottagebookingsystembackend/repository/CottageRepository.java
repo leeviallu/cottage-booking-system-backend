@@ -2,7 +2,6 @@ package org.example.cottagebookingsystembackend.repository;
 
 import jakarta.transaction.Transactional;
 import org.example.cottagebookingsystembackend.model.Cottage;
-import org.example.cottagebookingsystembackend.model.ServiceModel;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -26,6 +25,6 @@ public interface CottageRepository extends CrudRepository<Cottage, Long> {
 
     @Modifying
     @Transactional
-    @Query("DELETE FROM ServicesOfReservation sor WHERE sor.reservation.reservationId IN (SELECT r.reservationId FROM Reservation r WHERE r.cottage.cottageId=:id)")
+    @Query("DELETE FROM ServicesOfReservation sor WHERE sor.reservationId IN (SELECT r.reservationId FROM Reservation r WHERE r.cottage.cottageId=:id)")
     void deleteSorByCottageId(@Param("id") Long id);
 }

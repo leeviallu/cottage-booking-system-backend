@@ -21,6 +21,6 @@ public interface CustomerRepository extends CrudRepository<Customer, Long> {
 
     @Modifying
     @Transactional
-    @Query("DELETE FROM ServicesOfReservation sor WHERE sor.reservation.reservationId IN (SELECT r.reservationId FROM Reservation r WHERE r.customer.customerId=:id)")
+    @Query("DELETE FROM ServicesOfReservation sor WHERE sor.reservationId IN (SELECT r.reservationId FROM Reservation r WHERE r.customer.customerId=:id)")
     void deleteSorByCustomerId(@Param("id") Long id);
 }
