@@ -1,10 +1,7 @@
 package org.example.cottagebookingsystembackend.service;
 
 
-import org.example.cottagebookingsystembackend.model.Billing;
-import org.example.cottagebookingsystembackend.model.Cottage;
-import org.example.cottagebookingsystembackend.model.Reservation;
-import org.example.cottagebookingsystembackend.model.ServicesOfReservation;
+import org.example.cottagebookingsystembackend.model.*;
 import org.example.cottagebookingsystembackend.repository.BillingRepository;
 import org.example.cottagebookingsystembackend.repository.CottageRepository;
 import org.example.cottagebookingsystembackend.repository.ReservationRepository;
@@ -68,7 +65,7 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    public List<ServicesOfReservation> getAllServiceReservationsByDate(long areaId, Date startDate, Date endDate) {
+    public List<Object[]> getAllServiceReservationsByDate(long areaId, Date startDate, Date endDate) {
         return reservationRepository.findAllServiceReservationsByAreaIdAndDate(areaId, startDate, endDate);
     }
 
