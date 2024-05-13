@@ -26,6 +26,6 @@ public interface CottageRepository extends CrudRepository<Cottage, Long> {
 
     @Modifying
     @Transactional
-    @Query("DELETE FROM ServicesOfReservation sor WHERE sor.reservation.reservationId IN (SELECT r.reservationId FROM Reservation r WHERE r.cottage.cottageId=:id)")
+    @Query("DELETE FROM ServicesOfReservation sor WHERE sor.reservationId IN (SELECT r.reservationId FROM Reservation r WHERE r.cottage.cottageId=:id)")
     void deleteSorByCottageId(@Param("id") Long id);
 }

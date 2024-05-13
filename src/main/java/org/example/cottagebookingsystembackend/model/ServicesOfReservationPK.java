@@ -1,10 +1,14 @@
 package org.example.cottagebookingsystembackend.model;
 
+import jakarta.persistence.Column;
+
 import java.io.Serializable;
 import java.util.Objects;
 
 public class ServicesOfReservationPK implements Serializable {
+    @Column(name = "palvelu_id")
     private Long serviceId;
+    @Column(name = "varaus_id")
     private Long reservationId;
 
     public Long getServiceId() {

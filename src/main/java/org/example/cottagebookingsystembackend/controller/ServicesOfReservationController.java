@@ -30,7 +30,7 @@ public class ServicesOfReservationController {
 
     @PostMapping
     public ResponseEntity<String> createService(@RequestBody ServicesOfReservation servicesOfReservation) {
-        if (servicesOfReservation.getService().getServiceId() == null || servicesOfReservation.getReservation().getReservationId() == null) {
+        if (servicesOfReservation.getServiceId() == null || servicesOfReservation.getReservationId() == null) {
             return ResponseEntity.badRequest().body("Required fields are missing.");
         }
 
