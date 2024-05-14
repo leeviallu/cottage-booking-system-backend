@@ -44,8 +44,30 @@ public class ServicesOfReservationServiceImpl implements ServicesOfReservationSe
     }
 
     @Override
-    public List<ServicesOfReservation> getSorByReservationId(Long id) {
-        return servicesOfReservationRepository.findAll();
+    public List<ServicesOfReservation> getAllByReservationId(Long id) {
+        return servicesOfReservationRepository.findAllByReservationId(id);
+    }
+
+    @Override
+    public ServicesOfReservation getSorByServiceIdAndReservationId(Long serviceId, Long reservationId) {
+        return servicesOfReservationRepository.findSorByServiceIdAndReservationId(serviceId, reservationId);
+    }
+
+    @Override
+    public void deleteSor(Long serviceId, Long reservationId) {
+        ServicesOfReservation sor = servicesOfReservationRepository.findSorByServiceIdAndReservationId(serviceId, reservationId);
+        Optional<ServiceModel> service = serviceRepository.findById(serviceId);
+
+        if (service.isPresent()) {
+            Billing billing = billingRepository.findByReservationId(reservationId);
+            double sum = billing.getSum() - (service.get().getPrice() * sor.getCount());
+            billing.setSum(sum);
+            billingRepository.save(billing);
+        } else {
+            System.out.println("No service found");
+        }
+
+        servicesOfReservationRepository.deleteFromSorByServiceIdAndReservationId(serviceId, reservationId);
     }
 }
 

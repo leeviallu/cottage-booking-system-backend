@@ -25,7 +25,7 @@ public class ServicesOfReservationController {
 
     @GetMapping("/{id}")
     public ResponseEntity<List<ServicesOfReservation>> getServiceById(@PathVariable Long id) {
-        return ResponseEntity.ok(servicesOfReservationService.getSorByReservationId(id));
+        return ResponseEntity.ok(servicesOfReservationService.getAllByReservationId(id));
     }
 
     @PostMapping
@@ -36,5 +36,15 @@ public class ServicesOfReservationController {
 
         servicesOfReservationService.createSor(servicesOfReservation);
         return ResponseEntity.ok("Services Of Reservation has been created");
+    }
+    @DeleteMapping("/{serviceId}/{reservationId}")
+    public ResponseEntity<String> deleteService(@PathVariable Long serviceId, @PathVariable Long reservationId) {
+        ServicesOfReservation existingService = servicesOfReservationService.getSorByServiceIdAndReservationId(serviceId, reservationId);
+        if (existingService != null) {
+            servicesOfReservationService.deleteSor(serviceId, reservationId);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.noContent().build();
     }
 }
