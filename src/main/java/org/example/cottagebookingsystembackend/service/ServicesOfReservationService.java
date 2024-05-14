@@ -9,5 +9,6 @@ public interface ServicesOfReservationService {
     ServicesOfReservation getSorByServiceIdAndReservationId(Long serviceId, Long reservationId);
 
     void createSor(ServicesOfReservation sor);
+    void updateSor(ServicesOfReservation sor);
     void deleteSor(Long serviceId, Long reservationId);
 }

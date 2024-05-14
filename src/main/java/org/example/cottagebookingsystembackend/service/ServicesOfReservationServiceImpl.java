@@ -53,6 +53,25 @@ public class ServicesOfReservationServiceImpl implements ServicesOfReservationSe
         return servicesOfReservationRepository.findSorByServiceIdAndReservationId(serviceId, reservationId);
     }
 
+    public void updateSor(ServicesOfReservation sor) {
+        Optional<Reservation> reservation = reservationRepository.findById(sor.getReservationId());;
+        Optional<ServiceModel> service = serviceRepository.findById(sor.getServiceId());
+
+        if (service.isPresent() && reservation.isPresent() ) {
+            Billing billing = billingRepository.findByReservationId(reservation.get().getReservationId());
+            double sum = billing.getSum() + (service.get().getPrice() * sor.getCount());
+            billing.setSum(sum);
+            billingRepository.save(billing);
+        } else {
+            System.out.println("No reservation or service found");
+        }
+
+        ServicesOfReservation oldSor = servicesOfReservationRepository.findSorByServiceIdAndReservationId(sor.getServiceId(), sor.getReservationId());
+        sor.setCount(oldSor.getCount() + sor.getCount());
+
+        servicesOfReservationRepository.save(sor);
+    }
+
     @Override
     public void deleteSor(Long serviceId, Long reservationId) {
         ServicesOfReservation sor = servicesOfReservationRepository.findSorByServiceIdAndReservationId(serviceId, reservationId);

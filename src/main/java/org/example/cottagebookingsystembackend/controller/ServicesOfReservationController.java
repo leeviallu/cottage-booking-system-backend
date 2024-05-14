@@ -28,6 +28,11 @@ public class ServicesOfReservationController {
         return ResponseEntity.ok(servicesOfReservationService.getAllByReservationId(id));
     }
 
+    @GetMapping("/{reservationId}/{serviceId}")
+    public ResponseEntity<ServicesOfReservation> getServiceByServiceIdAndReservationId(@PathVariable Long reservationId, @PathVariable Long serviceId) {
+        return ResponseEntity.ok(servicesOfReservationService.getSorByServiceIdAndReservationId(serviceId, reservationId));
+    }
+
     @PostMapping
     public ResponseEntity<String> createService(@RequestBody ServicesOfReservation servicesOfReservation) {
         if (servicesOfReservation.getServiceId() == null || servicesOfReservation.getReservationId() == null) {
@@ -37,8 +42,19 @@ public class ServicesOfReservationController {
         servicesOfReservationService.createSor(servicesOfReservation);
         return ResponseEntity.ok("Services Of Reservation has been created");
     }
-    @DeleteMapping("/{serviceId}/{reservationId}")
-    public ResponseEntity<String> deleteService(@PathVariable Long serviceId, @PathVariable Long reservationId) {
+
+    @PutMapping
+    public ResponseEntity<String> updateService(@RequestBody ServicesOfReservation sor) {
+        ServicesOfReservation existingService = servicesOfReservationService.getSorByServiceIdAndReservationId(sor.getServiceId(), sor.getReservationId());
+        if (existingService != null) {
+            servicesOfReservationService.updateSor(sor);
+            return ResponseEntity.ok("Services Of Reservation updated successfully");
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    @DeleteMapping("/{reservationId}/{serviceId}")
+    public ResponseEntity<String> deleteService(@PathVariable Long reservationId, @PathVariable Long serviceId) {
         ServicesOfReservation existingService = servicesOfReservationService.getSorByServiceIdAndReservationId(serviceId, reservationId);
         if (existingService != null) {
             servicesOfReservationService.deleteSor(serviceId, reservationId);
