@@ -65,6 +65,21 @@ public class BillingController {
         return ResponseEntity.notFound().build();
     }
 
+    @PutMapping("/paid/{id}")
+    public ResponseEntity<String> updateBillingPaid(@PathVariable Long id) {
+        Billing billing = billingService.getBillingByReservationId(id);
+        if (billing != null) {
+            billing.setBillingId(id);
+            if (billing.getBillingId() == null || billing.getReservationId() == null) {
+                return ResponseEntity.unprocessableEntity().build();
+            }
+            billing.setIsPaid(!billing.getIsPaid());
+            billingService.updateBilling(billing);
+            return ResponseEntity.ok("Billing updated successfully");
+        }
+        return ResponseEntity.notFound().build();
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteBilling(@PathVariable Long id) {
         Billing existingBilling = billingService.getBillingById(id);

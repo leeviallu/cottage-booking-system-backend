@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface BillingService {
     Billing getBillingById(Long id);
+    Billing getBillingByReservationId(Long id);
     void createBilling(Billing billing);
     void updateBilling(Billing billing);
     void deleteBilling(Long id);

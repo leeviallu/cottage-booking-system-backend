@@ -24,6 +24,10 @@ public class BillingServiceImpl implements BillingService {
         return optionalBilling.orElse(null);
     }
 
+    public Billing getBillingByReservationId(Long id) {
+        return billingRepository.findByReservationId(id);
+    }
+
     @Override
     public void createBilling(Billing billing) {
         billingRepository.save(billing);
