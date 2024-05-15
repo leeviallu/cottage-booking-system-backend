@@ -11,6 +11,7 @@ public interface ReservationService {
     void updateReservation(Reservation housingReservation);
     void deleteReservation(Long id);
     List<Reservation> getAllReservations();
+    List<Reservation> getAllReservationsByCottageIdAndDateBetween(long cottageId, Date startDate, Date endDate);
     List<Object[]> getAllServiceReservationsByDate(long areaId, Date startDate, Date endDate);
     List<Reservation> getAllCottageReservationsByDate(long areaId, Date startDate, Date endDate);
 }

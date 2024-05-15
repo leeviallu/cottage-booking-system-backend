@@ -64,6 +64,11 @@ public class ReservationServiceImpl implements ReservationService {
         return (List<Reservation>) reservationRepository.findAll();
     }
 
+    public List<Reservation> getAllReservationsByCottageIdAndDateBetween(long cottageId, Date startDate, Date endDate) {
+        System.out.println(cottageId);
+        return reservationRepository.findAllReservationByCottageIdAndDateBetween(cottageId, startDate, endDate);
+    }
+
     @Override
     public List<Object[]> getAllServiceReservationsByDate(long areaId, Date startDate, Date endDate) {
         return reservationRepository.findAllServiceReservationsByAreaIdAndDate(areaId, startDate, endDate);

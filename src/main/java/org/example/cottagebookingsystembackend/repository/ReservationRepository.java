@@ -19,6 +19,9 @@ public interface ReservationRepository extends CrudRepository<Reservation, Long>
     @Query("SELECT r FROM Reservation r JOIN r.cottage c WHERE c.area.areaId=:areaId AND r.reservationStartingDate>:startDate and r.reservationEndingDate<:endDate")
     List<Reservation> findAllCottageReservationsByAreaIdAndDate(@Param("areaId") long areaId, @Param("startDate") Date startDate, @Param("endDate") Date endDate);
 
+    @Query("SELECT r FROM Reservation r JOIN r.cottage c WHERE r.cottage.cottageId=:cottageId AND ((r.reservationStartingDate<:startDate AND r.reservationEndingDate>:startDate) OR (r.reservationEndingDate>:endDate AND r.reservationStartingDate<:endDate) OR (r.reservationStartingDate>:startDate AND r.reservationEndingDate<:endDate))")
+    List<Reservation> findAllReservationByCottageIdAndDateBetween(@Param("cottageId") long cottageId, @Param("startDate") Date startDate, @Param("endDate") Date endDate);
+
     @Modifying
     @Transactional
     @Query("DELETE FROM Billing b WHERE b.reservationId=:id")

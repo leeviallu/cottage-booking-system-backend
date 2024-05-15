@@ -46,6 +46,20 @@ public class ReservationController {
         return ResponseEntity.notFound().build();
     }
 
+    @GetMapping("/between/{cottageId}")
+    public ResponseEntity<List<Reservation>> getCottageReservationsByCottageIdAndDateBetween(@PathVariable long cottageId, @RequestParam String startDate, @RequestParam String endDate) {
+        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+        try {
+            Date startFormatted = inputFormat.parse(startDate);
+            Date endFormatted = inputFormat.parse(endDate);
+            return ResponseEntity.ok().body(reservationService.getAllReservationsByCottageIdAndDateBetween(cottageId, startFormatted, endFormatted));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return ResponseEntity.notFound().build();
+    }
+
     @GetMapping("/services/{areaId}")
     public ResponseEntity<List<Object[]>> getServiceReservationsByDate(@PathVariable Long areaId, @RequestParam String startDate, @RequestParam String endDate) {
         SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
