@@ -25,6 +25,11 @@ public class CustomerController {
         return ResponseEntity.ok(customerService.getCustomerById(id));
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<Customer> getCustomerByEmail(@RequestParam String email) {
+        return ResponseEntity.ok(customerService.getCustomerByEmail(email));
+    }
+
     @GetMapping
     public ResponseEntity<List<Customer>> getAllCustomers() {
         return ResponseEntity.ok(customerService.getAllCustomers());

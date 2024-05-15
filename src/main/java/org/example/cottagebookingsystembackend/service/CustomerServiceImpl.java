@@ -24,6 +24,10 @@ public class CustomerServiceImpl implements CustomerService {
         return optionalCustomer.orElse(null);
     }
 
+    public Customer getCustomerByEmail(String email) {
+        return customerRepository.findCustomerByEmail(email);
+    }
+
     @Override
     public void createCustomer(Customer customer) {
         customerRepository.save(customer);

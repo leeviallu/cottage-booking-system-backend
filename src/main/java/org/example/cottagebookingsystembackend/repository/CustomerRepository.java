@@ -9,6 +9,9 @@ import org.springframework.data.repository.query.Param;
 
 
 public interface CustomerRepository extends CrudRepository<Customer, Long> {
+    @Query("SELECT c FROM Customer c WHERE c.email=:email")
+    Customer findCustomerByEmail(@Param("email") String email);
+
     @Modifying
     @Transactional
     @Query("DELETE FROM Reservation r WHERE r.customer.customerId=:id")
